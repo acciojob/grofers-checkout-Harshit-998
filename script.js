@@ -1,27 +1,27 @@
-
 const getSumBtn = document.createElement("button");
 getSumBtn.append("Get Total Price");
 document.body.appendChild(getSumBtn);
-let ans = 0;
 const getSum = () => {
-  //Add your code here
-  //   let price = document.getElementsByClassName("price");
-  let price = document.querySelectorAll(".price");
-  console.log(price);
-  price.forEach((ele) => {
-    ans += parseInt(ele.innerHTML);
+  getSumBtn.disabled = true;
+  const prices = document.querySelectorAll(".price");
+  let totalPrice = 0;
+  prices.forEach((price) => {
+    const value = parseInt(price.textContent);
+    if (!Number.isNaN(value)) {
+      totalPrice += value;
+    }
   });
-  let tbody = document.getElementsByTagName("tbody");
-  let tr = document.createElement("tr");
-  let td = document.createElement("td");
-  let td1 = document.createElement("td");
-  td.innerHTML = "Total";
-  td.id = "total";
-  td1.id = "result";
-  tr.append(td);
-  tr.append(td1);
-  tbody[0].append(tr);
-  document.getElementById("result").innerHTML = ans;
+  const totalPriceRow = document.createElement("tr");
+  totalPriceRow.id = "ans";
+  const totalPriceData = document.createElement("td");
+  const totalPriceAns = document.createElement("td");
+  totalPriceRow.appendChild(totalPriceData);
+  totalPriceRow.appendChild(totalPriceAns);
+  const data = `Total Price (in Rs): `;
+  totalPriceData.append(data);
+  totalPriceAns.append(`${totalPrice}`);
+  const table = document.querySelector("tbody");
+  table.appendChild(totalPriceRow);
 };
 
 getSumBtn.addEventListener("click", getSum);
