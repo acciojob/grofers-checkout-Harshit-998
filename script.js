@@ -21,7 +21,6 @@ let pricesEl = document.getElementsByClassName('price');
         </tr>`
 };
   
-};
 
 getSumBtn.addEventListener("click", getSum);
 
